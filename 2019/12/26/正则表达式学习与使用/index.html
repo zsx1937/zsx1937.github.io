@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>正则表达式学习与使用 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="元字符限定符(6个) *,+,?——匹配前面的子表达式零次或多次，一次或多次，零次或一次 &amp;#123;n&amp;#125;,&amp;#123;n,&amp;#125;,&amp;#123;n,m&amp;#125;——匹配n次，至少n次，至少n至多m次边界符(4个) ^——匹配输入字符串的开始位置，也匹配 ‘\n’ 或 ‘\r’ 之后的位置 $——匹配输入字符串的结束位置，也匹配 ‘\n’ 或 ‘\r’ 之前的位置 \b——匹配一个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="正则表达式学习与使用">
+<meta property="og:url" content="http://example.com/2019/12/26/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%AD%A6%E4%B9%A0%E4%B8%8E%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="元字符限定符(6个) *,+,?——匹配前面的子表达式零次或多次，一次或多次，零次或一次 &amp;#123;n&amp;#125;,&amp;#123;n,&amp;#125;,&amp;#123;n,m&amp;#125;——匹配n次，至少n次，至少n至多m次边界符(4个) ^——匹配输入字符串的开始位置，也匹配 ‘\n’ 或 ‘\r’ 之后的位置 $——匹配输入字符串的结束位置，也匹配 ‘\n’ 或 ‘\r’ 之前的位置 \b——匹配一个">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-12-25T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-10-15T06:29:17.000Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-正则表达式学习与使用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/12/26/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%AD%A6%E4%B9%A0%E4%B8%8E%E4%BD%BF%E7%94%A8/" class="article-date">
+  <time datetime="2019-12-25T16:00:00.000Z" itemprop="datePublished">2019-12-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      正则表达式学习与使用
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="元字符"><a href="#元字符" class="headerlink" title="元字符"></a>元字符</h1><h2 id="限定符-6个"><a href="#限定符-6个" class="headerlink" title="限定符(6个)"></a>限定符(6个)</h2><ul>
+<li><code>*</code>,<code>+</code>,<code>?</code>——匹配前面的子表达式零次或多次，一次或多次，零次或一次</li>
+<li><code>&#123;n&#125;</code>,<code>&#123;n,&#125;</code>,<code>&#123;n,m&#125;</code>——匹配n次，至少n次，至少n至多m次<h2 id="边界符-4个"><a href="#边界符-4个" class="headerlink" title="边界符(4个)"></a>边界符(4个)</h2></li>
+<li><code>^</code>——匹配输入字符串的开始位置，也匹配 ‘\n’ 或 ‘\r’ 之后的位置</li>
+<li><code>$</code>——匹配输入字符串的结束位置，也匹配 ‘\n’ 或 ‘\r’ 之前的位置</li>
+<li><code>\b</code>——匹配一个单词边界，也就是指单词和空格间的位置</li>
+<li><code>\B</code>——匹配非单词边界<h2 id="转义符"><a href="#转义符" class="headerlink" title="转义符"></a>转义符</h2></li>
+<li><code>\</code>——转义符<h2 id="非贪婪匹配"><a href="#非贪婪匹配" class="headerlink" title="非贪婪匹配"></a>非贪婪匹配</h2></li>
+<li><code>?</code>——当该字符紧跟在任何一个其他限制符 (*, +, ?, {n}, {n,}, {n,m}) 后面时，匹配模式是非贪婪的。非贪婪模式尽可能少的匹配所搜索的字符串，而默认的贪婪模式则尽可能多的匹配所搜索的字符串。<h2 id="其他常用元字符"><a href="#其他常用元字符" class="headerlink" title="其他常用元字符"></a>其他常用元字符</h2></li>
+<li><code>.</code>——匹配除换行符（\n、\r）之外的任何单个字符。要匹配包括 ‘\n’ 在内的任何字符，请使用像”(.|\n)”的模式</li>
+<li><code>\d</code>——匹配一个数字字符。等价于<code> [0-9]</code></li>
+<li><code>\D</code>——匹配一个非数字字符。等价于<code>[^0-9]</code></li>
+<li><code>\f</code>——匹配一个换页符</li>
+<li><code>\n</code>——匹配一个换行符</li>
+<li><code>\r</code>——匹配一个回车符</li>
+<li><code>\s</code>——匹配任何空白字符，包括空格、制表符、换页符等等。等价于 <code>[ \f\n\r\t\v]</code></li>
+<li><code>\S</code>——匹配任何非空白字符</li>
+<li><code>\w</code>——匹配字母、数字、下划线</li>
+<li><code>\W</code>——匹配非字母、数字、下划线</li>
+</ul>
+<h2 id="非获取与预查"><a href="#非获取与预查" class="headerlink" title="非获取与预查"></a>非获取与预查</h2><ul>
+<li><code>(pattern)</code>——匹配 pattern 并获取这一匹配</li>
+<li><code>(?:pattern)</code>——匹配 pattern 但不获取匹配结果，也就是说这是一个非获取匹配，不进行存储供以后使用。</li>
+<li><code>(?=pattern)</code>——正向肯定预查，在任何匹配pattern的字符串开始处匹配查找字符串。这是一个非获取匹配，也就是说，该匹配不需要获取供以后使用。例如，”Windows(?=95|98|NT|2000)”能匹配”Windows2000”中的”Windows”，但不能匹配”Windows3.1”中的”Windows”。预查不消耗字符，也就是说，在一个匹配发生后，在最后一次匹配之后立即开始下一次匹配的搜索，而不是从包含预查的字符之后开始。</li>
+<li><code>(?!pattern)</code>——正向否定预查，在任何不匹配pattern的字符串开始处匹配查找字符串。这是一个非获取匹配，也就是说，该匹配不需要获取供以后使用。例如”Windows(?!95|98|NT|2000)”能匹配”Windows3.1”中的”Windows”，但不能匹配”Windows2000”中的”Windows”。预查不消耗字符，也就是说，在一个匹配发生后，在最后一次匹配之后立即开始下一次匹配的搜索，而不是从包含预查的字符之后开始。</li>
+<li><code>(?&lt;=pattern)</code>——反向肯定预查，与正向肯定预查类似，只是方向相反。例如”(?&lt;=95|98|NT|2000)Windows”能匹配”2000Windows”中的”Windows”，但不能匹配”3.1Windows”中的”Windows”。</li>
+<li><code>(? &lt; !pattern)</code>——反向否定预查<h1 id="优先级"><a href="#优先级" class="headerlink" title="优先级"></a>优先级</h1></li>
+</ul>
+<ol>
+<li><code>\</code></li>
+<li><code>()</code>, <code>(?:)</code>, <code>(?=)</code>, <code>[]</code></li>
+<li><code>*</code>,<code>+</code>, <code>?</code>, <code>&#123;n&#125;</code>, <code>&#123;n,&#125;</code>, <code>&#123;n,m&#125;</code></li>
+<li>其他元字符，普通字符</li>
+<li><code>|</code>:或操作，”m|food”匹配”m”或”food”</li>
+</ol>
+<h1 id="几个栗子"><a href="#几个栗子" class="headerlink" title="几个栗子"></a>几个栗子</h1><ul>
+<li>IP地址：<code>((?:(?:25[0-5]|2[0-4]\d|[01]?\d?\d)\.)&#123;3&#125;(?:25[0-5]|2[0-4]\d|[01]?\d?\d))</code></li>
+<li>强密码(必须包含大小写字母和数字的组合，不能使用特殊字符，长度在 8-10 之间)：<code>^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]&#123;8,10&#125;$</code></li>
+<li>强密码(必须包含大小写字母和数字的组合，可以使用特殊字符，长度在8-10之间)：<code>^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).&#123;8,10&#125;$</code></li>
+<li>Email地址：<code>\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*</code></li>
+<li>域名：<code>[a-zA-Z0-9][-a-zA-Z0-9]&#123;0,62&#125;(\.[a-zA-Z0-9][-a-zA-Z0-9]&#123;0,62&#125;)+</code></li>
+<li>日期格式：<code>\d&#123;4&#125;-\d&#123;1,2&#125;-\d&#123;1,2&#125;</code></li>
+<li>一个月的31天(01～09和1～31)：<code>((0?[1-9])|((1|2)[0-9])|30|31)</code></li>
+<li>钱有四种表示形式”10000.00” , “10,000.00”, “10000” 和 “10,000”：<code>([0-9]+|[0-9]&#123;1,3&#125;(,[0-9]&#123;3&#125;)*)(.[0-9]&#123;1,2&#125;)?</code></li>
+</ul>
+<h1 id="REFERENCE"><a href="#REFERENCE" class="headerlink" title="REFERENCE"></a>REFERENCE</h1><p><a target="_blank" rel="noopener" href="https://www.runoob.com/regexp">https://www.runoob.com/regexp</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/12/26/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%AD%A6%E4%B9%A0%E4%B8%8E%E4%BD%BF%E7%94%A8/" data-id="ckgag6cra0003f3lr6mb08up4" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/07/17/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E6%A8%A1%E7%89%88/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          二分查找模版
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/12/04/%E4%BD%BF%E7%94%A8docker%E6%90%AD%E5%BB%BAftp%E6%9C%8D%E5%8A%A1%E5%99%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">使用docker搭建ftp服务器</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/17/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E6%A8%A1%E7%89%88/">二分查找模版</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/26/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%AD%A6%E4%B9%A0%E4%B8%8E%E4%BD%BF%E7%94%A8/">正则表达式学习与使用</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/04/%E4%BD%BF%E7%94%A8docker%E6%90%AD%E5%BB%BAftp%E6%9C%8D%E5%8A%A1%E5%99%A8/">使用docker搭建ftp服务器</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/07/%E8%AE%B0%E4%B8%80%E6%AC%A1%E8%85%BE%E8%AE%AF%E9%9D%A2%E8%AF%95/">记一次腾讯面试</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/27/%E7%94%A8%E4%B8%8D%E7%A8%B3%E5%AE%9A%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0%E7%A8%B3%E5%AE%9A%E6%8E%92%E5%BA%8F/">用不稳定排序算法实现稳定排序</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

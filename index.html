@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-二分查找模版" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/17/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E6%A8%A1%E7%89%88/" class="article-date">
+  <time datetime="2020-07-16T16:00:00.000Z" itemprop="datePublished">2020-07-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/17/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E6%A8%A1%E7%89%88/">二分查找模版</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>设函数 <code>f(x)</code> 单调递增，给定一个范围 <code>[l, r)</code>，在这个范围中找一个最小的 <code>m</code> 使得 <code>f(m)&gt;0</code>。</p>
+<h1 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h1><p>二分法</p>
+<h1 id="边界问题"><a href="#边界问题" class="headerlink" title="边界问题"></a>边界问题</h1><ul>
+<li><p>采用左闭右开区间<code>[l, r)</code>，伪代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"> # 如果存在最小的 m 使得 f(m) &gt; 0，则返回 m；</span><br><span class="line"> # 如果不存在最小的 m 使得 f(m) &gt; 0，即所有 x 都有 f(x) &lt;&#x3D; 0，则返回 r；</span><br><span class="line"> # 需要注意的是，r 可能是问题的解，也可能不是，需要后续验证；这是这个算法的核心</span><br><span class="line">def binary_Search(l, r) :</span><br><span class="line">	while l &lt; r :</span><br><span class="line">	# l &lt; r可以保证一个区间确实存在，l&gt;&#x3D;r时该区间不存在</span><br><span class="line">		m&#x3D; (l + r) &#x2F; 2</span><br><span class="line">		# 更严格的写法为m &#x3D; l + ( r - l ) &#x2F; 2，可以保证不溢出，且除法可以使用右移位运算代替</span><br><span class="line">		if f(m) &gt; 0:</span><br><span class="line">			r &#x3D; m</span><br><span class="line">			# 此时的m满足f(m)&gt;0，此时的m还有作为解的可能性，则更新一个新区间[l, m)</span><br><span class="line">		else</span><br><span class="line">			l &#x3D; m + 1</span><br><span class="line">			# 此时的m不满足f(m) &gt; 0，此时的m不可能成为解，则更新一个新区间[m+1, r)</span><br><span class="line">	return l</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>采用左右闭合区间<code>[l, r]</code>，伪代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"> # 如果存在最小的 m 使得 f(m) &gt; 0，则返回 m；</span><br><span class="line"> # 如果不存在最小的 m 使得 f(m) &gt; 0，即所有 x 都有 f(x) &lt;&#x3D; 0，则返回 r + 1；</span><br><span class="line"> # 需要注意的是，r + 1可能是问题的解，也可能不是，需要后续验证；</span><br><span class="line">def binary_Search(l, r) :</span><br><span class="line">	while l &lt;&#x3D; r :</span><br><span class="line">	# l &lt;&#x3D; r可以保证一个区间确实存在，l&gt;r时该区间不存在</span><br><span class="line">		m &#x3D; ( l + r ) &#x2F; 2</span><br><span class="line">		# 更严格的写法为m &#x3D; l + ( r - l ) &#x2F; 2，可以保证不溢出，且除法可以使用右移位运算代替</span><br><span class="line">		if f(m) &gt; 0:</span><br><span class="line">			r &#x3D; m - 1</span><br><span class="line">			# 此时的 m 满足f(m) &gt; 0，此时的 m 还有作为解的可能性，则更新一个新区间[l, m-1]</span><br><span class="line">		else</span><br><span class="line">			l &#x3D; m + 1</span><br><span class="line">			# 此时的 m 不满足 f(m) &gt; 0，此时的 m 不可能成为解，则更新一个新区间[m+1, r]</span><br><span class="line">	return l</span><br><span class="line"># 这个算法中如果写成r &#x3D; m，有可能形成死循环，比左闭右开区间的思路较难理解，且容易出错。</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h1 id="问题变形"><a href="#问题变形" class="headerlink" title="问题变形"></a>问题变形</h1><ol>
+<li><p>设函数<code>f(x)</code>单调递增，给定一个范围<code>[l, r)</code>，在这个范围中找一个最大的<code>m</code>使得<code>f(m)&lt;=0</code>。<br>等价于找到最小的m使得f(m)&gt;0，则有f(m-1)&lt;=0。需要考虑左边界f(l-1)未必满足要求。</p>
+</li>
+<li><p>设函数<code>f(x)</code>单调递减，给定一个范围<code>[l, r)</code>，在这个范围中找一个最小的<code>m</code>使得<code>f(m)&lt;0</code>。<br>与原问题等价，即函数<code>-f(x)</code>单调递增，给定一个范围<code>[l, r)</code>，在这个范围中找一个最小的<code>m</code>使得<code>-f(m)&gt;0</code>。</p>
+</li>
+<li><p>设函数<code>f(x)</code>单调递减，给定一个范围<code>[l, r)</code>，在这个范围中找一个最大的<code>m</code>使得<code>f(m)&gt;=0</code>。<br>与问题1等价，即函数<code>-f(x)</code>单调递增，给定一个范围<code>[l, r)</code>，在这个范围中找一个最大的<code>m</code>使得<code>-f(m)&lt;=0</code></p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/07/17/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E6%A8%A1%E7%89%88/" data-id="ckgag6cr30001f3lr4opf6xlb" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-正则表达式学习与使用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/12/26/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%AD%A6%E4%B9%A0%E4%B8%8E%E4%BD%BF%E7%94%A8/" class="article-date">
+  <time datetime="2019-12-25T16:00:00.000Z" itemprop="datePublished">2019-12-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/26/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%AD%A6%E4%B9%A0%E4%B8%8E%E4%BD%BF%E7%94%A8/">正则表达式学习与使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="元字符"><a href="#元字符" class="headerlink" title="元字符"></a>元字符</h1><h2 id="限定符-6个"><a href="#限定符-6个" class="headerlink" title="限定符(6个)"></a>限定符(6个)</h2><ul>
+<li><code>*</code>,<code>+</code>,<code>?</code>——匹配前面的子表达式零次或多次，一次或多次，零次或一次</li>
+<li><code>&#123;n&#125;</code>,<code>&#123;n,&#125;</code>,<code>&#123;n,m&#125;</code>——匹配n次，至少n次，至少n至多m次<h2 id="边界符-4个"><a href="#边界符-4个" class="headerlink" title="边界符(4个)"></a>边界符(4个)</h2></li>
+<li><code>^</code>——匹配输入字符串的开始位置，也匹配 ‘\n’ 或 ‘\r’ 之后的位置</li>
+<li><code>$</code>——匹配输入字符串的结束位置，也匹配 ‘\n’ 或 ‘\r’ 之前的位置</li>
+<li><code>\b</code>——匹配一个单词边界，也就是指单词和空格间的位置</li>
+<li><code>\B</code>——匹配非单词边界<h2 id="转义符"><a href="#转义符" class="headerlink" title="转义符"></a>转义符</h2></li>
+<li><code>\</code>——转义符<h2 id="非贪婪匹配"><a href="#非贪婪匹配" class="headerlink" title="非贪婪匹配"></a>非贪婪匹配</h2></li>
+<li><code>?</code>——当该字符紧跟在任何一个其他限制符 (*, +, ?, {n}, {n,}, {n,m}) 后面时，匹配模式是非贪婪的。非贪婪模式尽可能少的匹配所搜索的字符串，而默认的贪婪模式则尽可能多的匹配所搜索的字符串。<h2 id="其他常用元字符"><a href="#其他常用元字符" class="headerlink" title="其他常用元字符"></a>其他常用元字符</h2></li>
+<li><code>.</code>——匹配除换行符（\n、\r）之外的任何单个字符。要匹配包括 ‘\n’ 在内的任何字符，请使用像”(.|\n)”的模式</li>
+<li><code>\d</code>——匹配一个数字字符。等价于<code> [0-9]</code></li>
+<li><code>\D</code>——匹配一个非数字字符。等价于<code>[^0-9]</code></li>
+<li><code>\f</code>——匹配一个换页符</li>
+<li><code>\n</code>——匹配一个换行符</li>
+<li><code>\r</code>——匹配一个回车符</li>
+<li><code>\s</code>——匹配任何空白字符，包括空格、制表符、换页符等等。等价于 <code>[ \f\n\r\t\v]</code></li>
+<li><code>\S</code>——匹配任何非空白字符</li>
+<li><code>\w</code>——匹配字母、数字、下划线</li>
+<li><code>\W</code>——匹配非字母、数字、下划线</li>
+</ul>
+<h2 id="非获取与预查"><a href="#非获取与预查" class="headerlink" title="非获取与预查"></a>非获取与预查</h2><ul>
+<li><code>(pattern)</code>——匹配 pattern 并获取这一匹配</li>
+<li><code>(?:pattern)</code>——匹配 pattern 但不获取匹配结果，也就是说这是一个非获取匹配，不进行存储供以后使用。</li>
+<li><code>(?=pattern)</code>——正向肯定预查，在任何匹配pattern的字符串开始处匹配查找字符串。这是一个非获取匹配，也就是说，该匹配不需要获取供以后使用。例如，”Windows(?=95|98|NT|2000)”能匹配”Windows2000”中的”Windows”，但不能匹配”Windows3.1”中的”Windows”。预查不消耗字符，也就是说，在一个匹配发生后，在最后一次匹配之后立即开始下一次匹配的搜索，而不是从包含预查的字符之后开始。</li>
+<li><code>(?!pattern)</code>——正向否定预查，在任何不匹配pattern的字符串开始处匹配查找字符串。这是一个非获取匹配，也就是说，该匹配不需要获取供以后使用。例如”Windows(?!95|98|NT|2000)”能匹配”Windows3.1”中的”Windows”，但不能匹配”Windows2000”中的”Windows”。预查不消耗字符，也就是说，在一个匹配发生后，在最后一次匹配之后立即开始下一次匹配的搜索，而不是从包含预查的字符之后开始。</li>
+<li><code>(?&lt;=pattern)</code>——反向肯定预查，与正向肯定预查类似，只是方向相反。例如”(?&lt;=95|98|NT|2000)Windows”能匹配”2000Windows”中的”Windows”，但不能匹配”3.1Windows”中的”Windows”。</li>
+<li><code>(? &lt; !pattern)</code>——反向否定预查<h1 id="优先级"><a href="#优先级" class="headerlink" title="优先级"></a>优先级</h1></li>
+</ul>
+<ol>
+<li><code>\</code></li>
+<li><code>()</code>, <code>(?:)</code>, <code>(?=)</code>, <code>[]</code></li>
+<li><code>*</code>,<code>+</code>, <code>?</code>, <code>&#123;n&#125;</code>, <code>&#123;n,&#125;</code>, <code>&#123;n,m&#125;</code></li>
+<li>其他元字符，普通字符</li>
+<li><code>|</code>:或操作，”m|food”匹配”m”或”food”</li>
+</ol>
+<h1 id="几个栗子"><a href="#几个栗子" class="headerlink" title="几个栗子"></a>几个栗子</h1><ul>
+<li>IP地址：<code>((?:(?:25[0-5]|2[0-4]\d|[01]?\d?\d)\.)&#123;3&#125;(?:25[0-5]|2[0-4]\d|[01]?\d?\d))</code></li>
+<li>强密码(必须包含大小写字母和数字的组合，不能使用特殊字符，长度在 8-10 之间)：<code>^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]&#123;8,10&#125;$</code></li>
+<li>强密码(必须包含大小写字母和数字的组合，可以使用特殊字符，长度在8-10之间)：<code>^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).&#123;8,10&#125;$</code></li>
+<li>Email地址：<code>\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*</code></li>
+<li>域名：<code>[a-zA-Z0-9][-a-zA-Z0-9]&#123;0,62&#125;(\.[a-zA-Z0-9][-a-zA-Z0-9]&#123;0,62&#125;)+</code></li>
+<li>日期格式：<code>\d&#123;4&#125;-\d&#123;1,2&#125;-\d&#123;1,2&#125;</code></li>
+<li>一个月的31天(01～09和1～31)：<code>((0?[1-9])|((1|2)[0-9])|30|31)</code></li>
+<li>钱有四种表示形式”10000.00” , “10,000.00”, “10000” 和 “10,000”：<code>([0-9]+|[0-9]&#123;1,3&#125;(,[0-9]&#123;3&#125;)*)(.[0-9]&#123;1,2&#125;)?</code></li>
+</ul>
+<h1 id="REFERENCE"><a href="#REFERENCE" class="headerlink" title="REFERENCE"></a>REFERENCE</h1><p><a target="_blank" rel="noopener" href="https://www.runoob.com/regexp">https://www.runoob.com/regexp</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/12/26/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%AD%A6%E4%B9%A0%E4%B8%8E%E4%BD%BF%E7%94%A8/" data-id="ckgag6cra0003f3lr6mb08up4" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-使用docker搭建ftp服务器" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/12/04/%E4%BD%BF%E7%94%A8docker%E6%90%AD%E5%BB%BAftp%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="article-date">
+  <time datetime="2019-12-03T16:00:00.000Z" itemprop="datePublished">2019-12-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/04/%E4%BD%BF%E7%94%A8docker%E6%90%AD%E5%BB%BAftp%E6%9C%8D%E5%8A%A1%E5%99%A8/">使用docker搭建ftp服务器</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><h2 id="1-拉取镜像到本地"><a href="#1-拉取镜像到本地" class="headerlink" title="1. 拉取镜像到本地"></a>1. 拉取镜像到本地</h2><p><code>docker pull fauria/vsftpd</code></p>
+<h2 id="2-启动容器"><a href="#2-启动容器" class="headerlink" title="2.启动容器"></a>2.启动容器</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -v &#x2F;home&#x2F;zsxftp:&#x2F;home&#x2F;vsftpd \</span><br><span class="line">-p 8020:20 -p 8021:21 -p 21100-21110:21100-21110 \</span><br><span class="line">-e FTP_USER&#x3D;test -e FTP_PASS&#x3D;test \</span><br><span class="line">-e PASV_ADDRESS&#x3D;127.0.0.1 \</span><br><span class="line">-e PASV_MIN_PORT&#x3D;21100 -e PASV_MAX_PORT&#x3D;21110 \</span><br><span class="line">--name vsftpd --restart&#x3D;always fauria&#x2F;vsftpd</span><br></pre></td></tr></table></figure>
+<p>说明:</p>
+<ul>
+<li>/home/zsxftp:/home/vsftpd：映射 docker 容器 ftp 文件根目录</li>
+<li>-p：映射 docker 端口,我的21端口被pure-ftpd程序占用，所以使用8021端口</li>
+<li>-e FTP_USER=test -e FTP_PASS=test ：设置默认的用户名密码</li>
+<li>PASV_ADDRESS：宿主机 ip</li>
+<li>PASV_MIN_PORT~ PASV_MAX_PORT：给客服端提供下载服务随机端口号范围</li>
+</ul>
+<h2 id="3-CentOS防火墙配置"><a href="#3-CentOS防火墙配置" class="headerlink" title="3.CentOS防火墙配置"></a>3.CentOS防火墙配置</h2><p><code>firewall-cmd --permanent --add-port=8020/tcp</code> 使用到的各端口均需打开<br><code>firewall-cmd --reload</code></p>
+<h2 id="4-新建用户"><a href="#4-新建用户" class="headerlink" title="4.新建用户"></a>4.新建用户</h2><p>进入容器 <code>docker exec -i -t vsftpd bash</code><br>编辑配置文件<code>/etc/vsftpd/virtual_users.txt</code>,添加用户名和密码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vi &#x2F;etc&#x2F;vsftpd&#x2F;virtual_users.txt</span><br><span class="line">test</span><br><span class="line">test</span><br><span class="line">name</span><br><span class="line">passwd</span><br></pre></td></tr></table></figure>
+<p>创建用户文件夹 <code>mkdir -p /home/vsftpd/name</code><br>生成二进制文件 <code>/usr/bin/db_load -T -t hash -f /etc/vsftpd/virtual_users.txt /etc/vsftpd/virtual_users.db</code><br>退出 <code>exit</code><br>restart <code>docker restart vsftpd</code></p>
+<h1 id="浏览器访问ftp"><a href="#浏览器访问ftp" class="headerlink" title="浏览器访问ftp"></a>浏览器访问ftp</h1><p>地址栏访问 <a href="ftp://test:test@lovesatomi.xyz:8021/">ftp://test:test@lovesatomi.xyz:8021</a><br>或者使用ftp软件例如FileZilla等访问</p>
+<h1 id="使用到的其他命令"><a href="#使用到的其他命令" class="headerlink" title="使用到的其他命令"></a>使用到的其他命令</h1><p>获取容器信息 <code>docker container ls -al</code><br>停止容器 <code>docker container stop &lt;container ID&gt;</code><br>删除容器 <code>docker container rm &lt;container ID&gt;</code></p>
+<h1 id="REFERENCE"><a href="#REFERENCE" class="headerlink" title="REFERENCE"></a>REFERENCE</h1><p><a target="_blank" rel="noopener" href="https://github.com/fauria/docker-vsftpd">https://github.com/fauria/docker-vsftpd</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/12/04/%E4%BD%BF%E7%94%A8docker%E6%90%AD%E5%BB%BAftp%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-id="ckgag6cr80002f3lrgobg2ztz" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-记一次腾讯面试" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/07/%E8%AE%B0%E4%B8%80%E6%AC%A1%E8%85%BE%E8%AE%AF%E9%9D%A2%E8%AF%95/" class="article-date">
+  <time datetime="2019-11-06T16:00:00.000Z" itemprop="datePublished">2019-11-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/07/%E8%AE%B0%E4%B8%80%E6%AC%A1%E8%85%BE%E8%AE%AF%E9%9D%A2%E8%AF%95/">记一次腾讯面试</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>腾讯的面试真的很有水平，不像有些公司只考察课本上的基础知识，有种应付差事的感觉；也不像有些公司考察在短时间内很难想出来的题目，全靠运气，刷过类似的题目就会，没刷过就不会。</p>
+<h1 id="面试问题"><a href="#面试问题" class="headerlink" title="面试问题"></a>面试问题</h1><ol>
+<li>有一个<code>vector&lt;int&gt;</code>，包含1亿个qq号，qq号的奇偶分布均匀，要求写一个函数剔除掉所有偶数的qq号。分析算法性能，标准库中有没有该方法的实现。(<code>partition</code>)</li>
+</ol>
+<ol start="2">
+<li><ul>
+<li>面试官：游戏服务器后台排查问题，玩家登陆的时候10次中有8次无法登陆，但是一旦登陆上了数据传输都是OK的，没有问题。问：问题可能出在哪里。</li>
+<li>答：可能是第一次连接的时候连接不上，可能是三次握手。</li>
+<li>问：linux机器中如何查看网络连接的状态。</li>
+<li>答: netstat</li>
+<li>问：查看后发现有大量的time－wait 状态的连接，分析一下。</li>
+</ul>
+</li>
+</ol>
+<ol start="3">
+<li><ul>
+<li>面试官：设计一个服务器框架，维护客户端上传的玩家uid和历史最高游戏得分score。</li>
+<li>答：hashmap</li>
+<li>问：继续设计，客户端上传一个数字n，服务器可以返回前n个最高得分的玩家的信息。</li>
+<li>问：继续设计，客户端上传一个数字m，服务器可以返回排名在该玩家前后m个玩家的信息。</li>
+<li>问：如果一个进程跑在服务器上，可以满足上述客户端的查询需求，服务器需要考虑什么问题。（分布式，高并发，备份）</li>
+</ul>
+</li>
+</ol>
+<ol start="4">
+<li>其他问题：C++ 虚函数，编译器调用虚函数的过程，多重继承虚函数重名如何解决，同名函数重载<code>overload</code>底层是如何实现的。</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/11/07/%E8%AE%B0%E4%B8%80%E6%AC%A1%E8%85%BE%E8%AE%AF%E9%9D%A2%E8%AF%95/" data-id="ckgag6crc0005f3lr8h8b9v24" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-用不稳定排序算法实现稳定排序" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/27/%E7%94%A8%E4%B8%8D%E7%A8%B3%E5%AE%9A%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0%E7%A8%B3%E5%AE%9A%E6%8E%92%E5%BA%8F/" class="article-date">
+  <time datetime="2019-10-26T16:00:00.000Z" itemprop="datePublished">2019-10-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/27/%E7%94%A8%E4%B8%8D%E7%A8%B3%E5%AE%9A%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0%E7%A8%B3%E5%AE%9A%E6%8E%92%E5%BA%8F/">用不稳定排序算法实现稳定排序</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h2><p>先排序一遍，用hashmap记录所有具有不同<code>value</code>的元素在排序后的起始位置<code>pos</code>，再扫描一遍原数组，按先后顺序把值为<code>value</code>的元素放到对应的位置<code>pos</code>上，更新hashpmap中对应<code>value</code>的起始位置（也即<code>pos++</code>）。</p>
+<h2 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h2><p>把原<code>value</code>和其下标<code>index</code>封装成新类，再重载小于运算符（或比较函数）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">template &lt;T&gt;</span><br><span class="line">struct newnode &#123;</span><br><span class="line">	T value;</span><br><span class="line">	int index;</span><br><span class="line">	bool operator&lt; (const newnode &amp;n0)&#123;</span><br><span class="line">	if (value &#x3D;&#x3D; n0.value) </span><br><span class="line">		return index &lt; n0.index;</span><br><span class="line">	else </span><br><span class="line">		return value &lt; n0.value&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/10/27/%E7%94%A8%E4%B8%8D%E7%A8%B3%E5%AE%9A%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0%E7%A8%B3%E5%AE%9A%E6%8E%92%E5%BA%8F/" data-id="ckgag6crb0004f3lr9u06109i" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-about me" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/09/07/about%20me/" class="article-date">
+  <time datetime="2019-09-06T16:00:00.000Z" itemprop="datePublished">2019-09-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/07/about%20me/">About me</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="个人简介"><a href="#个人简介" class="headerlink" title="个人简介"></a>个人简介</h2><p>本科硕士期间划水摸鱼，个人简介都没啥可写的，那就简单说下尝龟项目吧。</p>
+<ul>
+<li>教育：上海西南某高校渣本渣硕，EE专业。</li>
+<li>兴趣：打打游戏看看书？涉猎广泛，疯狂被安利入坑。现阶段主要玩王者荣耀，有想一起开黑的小锅锅小改改阔以联系我鸭；喜欢看直播，甚至可以建立<code>map&lt;voice，name&gt;</code>的<code>hashmap</code>，错误率很低。</li>
+<li>Skills：C++，Linux OS，TCPIP。emmm，都是常规必备技能了。</li>
+</ul>
+<h2 id="如何联系"><a href="#如何联系" class="headerlink" title="如何联系"></a>如何联系</h2><ul>
+<li>Email: <a href="mailto:&#x7a;&#115;&#120;&#49;&#57;&#x33;&#55;&#x40;&#x73;&#x6a;&#116;&#117;&#46;&#101;&#100;&#x75;&#x2e;&#x63;&#110;">&#x7a;&#115;&#120;&#49;&#57;&#x33;&#55;&#x40;&#x73;&#x6a;&#116;&#117;&#46;&#101;&#100;&#x75;&#x2e;&#x63;&#110;</a></li>
+<li>WeChat: bb-4ac</li>
+<li>Blog: <a target="_blank" rel="noopener" href="http://www.lovesatomi.xyz/">www.lovesatomi.xyz</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/09/07/about%20me/" data-id="ckgag6cqw0000f3lrgfl3eyx9" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/17/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E6%A8%A1%E7%89%88/">二分查找模版</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/26/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%AD%A6%E4%B9%A0%E4%B8%8E%E4%BD%BF%E7%94%A8/">正则表达式学习与使用</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/04/%E4%BD%BF%E7%94%A8docker%E6%90%AD%E5%BB%BAftp%E6%9C%8D%E5%8A%A1%E5%99%A8/">使用docker搭建ftp服务器</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/07/%E8%AE%B0%E4%B8%80%E6%AC%A1%E8%85%BE%E8%AE%AF%E9%9D%A2%E8%AF%95/">记一次腾讯面试</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/27/%E7%94%A8%E4%B8%8D%E7%A8%B3%E5%AE%9A%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0%E7%A8%B3%E5%AE%9A%E6%8E%92%E5%BA%8F/">用不稳定排序算法实现稳定排序</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
